@@ -7,7 +7,11 @@ En este ciclo se creará una tienda virtual mediante el stack MERN
 Integrante:
 
 Ana Valentina Marín
+
 William Alvarez
-Juan Marín
+
+Juan Manuel Marín
+
 Julián Gaviria
+
 
