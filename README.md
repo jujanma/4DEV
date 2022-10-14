@@ -4,7 +4,7 @@
 
 En este ciclo se creará una tienda virtual mediante el stack MERN
 
-Integrante:
+Integrantes:
 
 Ana Valentina Marín
 
@@ -13,5 +13,12 @@ William Alvarez
 Juan Manuel Marín
 
 Julián Gaviria
+
+
+Nombre del grupo: 4Devs
+
+Url Cronograma de actividades: https://trello.com/b/Tb9lYtWS/ciclo-4
+
+Url GitHub del proyecto: https://github.com/jujanma/4DEV.git
 
 
