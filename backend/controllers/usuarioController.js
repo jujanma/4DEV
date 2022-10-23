@@ -17,12 +17,13 @@ exports.nuevoUsuario = async (req, res, next) => {
         let usuario = await Usuario.findOne({ nombre });
 
         if (usuario) {
-            return res.json("ya existe")
+            return res.json(" Usuario ya existe")
         }
 
         usuario = new Usuario(req.body);
-        await usuario.save();
-        res.json({ mesaje: 'El usuario se agregó correctamene' });
+        console.log(usuario)
+        const usuarioAlmacenado = await usuario.save();
+        res.json({msg: 'El usaurio se agregó correctamente'});
     } catch (error) {
         console.log(error);
         next()

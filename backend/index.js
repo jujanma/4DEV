@@ -24,7 +24,7 @@ app.use("/api/ususario", usuarioRoutes());
 
 app.listen(4000, async () => {
   try {
-    await mongoose.connect('mongodb+srv://jgaviriaq:71294859jgq@cluster0.cxrgni5.mongodb.net/TiendaCiclo4?retryWrites=true&w=majorityz', {
+    await mongoose.connect('mongodb+srv://jgaviriaq:71294859jgq@cluster0.cxrgni5.mongodb.net/TiendaCiclo4?retryWrites=true', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
