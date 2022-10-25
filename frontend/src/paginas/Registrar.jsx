@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import Alerta from "../components/Alerta"
 import axios from 'axios'
+import Mensaje from "../components/Mensaje"
 
 const Registrar = () => {
 
@@ -11,28 +12,36 @@ const Registrar = () => {
     const [repetirPassword, setRepetirPassword] = useState('');
     const [rol, setRol] = useState('');
     const [alerta, setAlerta] = useState(false)
-
-    const handleSubmit = (e) => {
+    const [mensaje, setMensaje] = useState(false)
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if([nombre, email, password, repetirPassword, rol].includes('')){
+        if ([nombre, email, password, repetirPassword, rol].includes('')) {
             setAlerta(true)
             return;
         }
         setAlerta(false)
 
-       console.log("Creando usuario ") 
+        try {
+            const {data} = await axios.post('http://localhost:4000/api/ususario', { nombre, email, password, rol })
+            setMensaje({
+                msg:data.msg
+
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 
-      
+
 
     return (
         <>
             <h1 className="text-sky-600 font-black text-4xl  capitalize">Crea tu cuenta y administra tus {' '} <span className="text-slate-700">Productos</span></h1>
 
             {alerta && <Alerta><p>Todos los campos son obligatorios</p></Alerta>}
-
-            <form 
+            {mensaje && <Mensaje><p>Usuario registrado</p></Mensaje>}   
+            <form
                 className="my-10 bg-slate-100 shadow rounded-lg p-10"
                 onSubmit={handleSubmit}
             >
@@ -47,7 +56,7 @@ const Registrar = () => {
                         placeholder="Tu nombre"
                         className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
                         value={nombre}
-                        onChange={e=> setNombre(e.target.value)}
+                        onChange={e => setNombre(e.target.value)}
                     />
                 </div>
 
@@ -62,7 +71,7 @@ const Registrar = () => {
                         placeholder="Email de Registro"
                         className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
                         value={email}
-                        onChange={e=> setEmail(e.target.value)}
+                        onChange={e => setEmail(e.target.value)}
                     />
                 </div>
 
@@ -77,7 +86,7 @@ const Registrar = () => {
                         placeholder="Password de Registro"
                         className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
                         value={password}
-                        onChange={e=> setPassword(e.target.value)}
+                        onChange={e => setPassword(e.target.value)}
                     />
                 </div>
 
@@ -92,7 +101,7 @@ const Registrar = () => {
                         placeholder="Repetir tu Password"
                         className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
                         value={repetirPassword}
-                        onChange={e=> setRepetirPassword(e.target.value)}
+                        onChange={e => setRepetirPassword(e.target.value)}
                     />
                 </div>
 
@@ -107,7 +116,7 @@ const Registrar = () => {
                         placeholder="usuario o vendedor"
                         className="w-full mt-3 p-3 border rounded-xl bg-gray-50"
                         value={rol}
-                        onChange={e=> setRol(e.target.value)}
+                        onChange={e => setRol(e.target.value)}
                     />
                 </div>
 

@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const usuarioRoutes = require('./routes/usuarioRoutes');
 const bodyParser = require('body-parser')
 
@@ -13,7 +14,20 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
+//Configurando Cors
+const whitelist = ["http://127.0.0.1:5173"];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.includes(origin)) {
+      callback(null,true);
+    } else {
+      callback(new Error("Error de Cors"))
+    }
+  }
+}
+
+app.use(cors(corsOptions));
 
 //Habilitar routing
 

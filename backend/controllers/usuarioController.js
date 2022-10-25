@@ -23,7 +23,7 @@ exports.nuevoUsuario = async (req, res, next) => {
         usuario = new Usuario(req.body);
         console.log(usuario)
         const usuarioAlmacenado = await usuario.save();
-        res.json({msg: 'El usaurio se agregó correctamente'});
+        res.json({msg: 'El usuario se agregó correctamente'});
     } catch (error) {
         console.log(error);
         next()
